@@ -6,34 +6,32 @@ const { loginTeacher_f } = require("../../Teacher/loginTeacher");
 
 const resolverTeacher = {
   Query: {
-    async teachers(parent, args, { pool }) {
-      const data = await getTeacehrs_f(parent, args, { pool });
+    async teachers(_, __, { pool }) {
+      const data = await getTeacehrs_f(pool);
       return data;
     },
-    async teacher(parent, { id }, { pool }) {
-      const data = getTeacher_f(parent, { id }, { pool });
+    async teacher(_, { id }, { pool }) {
+      const data = getTeacher_f(parent, id, pool);
       return data;
     },
   },
   Mutation: {
-    async addTeacher(parent, { name, email, password }, { pool }) {
+    async addTeacher(_, { first_name, last_name, email, password }, { pool }) {
       const data = await addTeacher_f(
-        parent,
-        { name, email, password },
-        { pool }
+        first_name,
+        last_name,
+        email,
+        password,
+        pool
       );
       return data;
     },
-    async deleteTeacher(parent, { id }, { pool }) {
-      const data = await deleteTeacher_f(parent, { id }, { pool });
+    async deleteTeacher(_, { id }, { pool }) {
+      const data = await deleteTeacher_f(id, pool);
       return data;
     },
-    async loginTeacher(parent, { email, password }, { pool, res, req }) {
-      const data = loginTeacher_f(
-        parent,
-        { email, password },
-        { pool, req, res }
-      );
+    async loginTeacher(_, { email, password }, { pool, res }) {
+      const data = loginTeacher_f(email, password, pool, res);
       return data;
     },
   },

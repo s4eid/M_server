@@ -2,11 +2,13 @@ const { gql } = require("apollo-server-express");
 const typeTeacher = gql`
   type Teacher {
     id: ID!
-    name: String!
+    first_name: String!
+    last_name: String!
     email: String!
     password: String!
     createdat: String!
     picture: String
+    role: String!
     refresh_token: String
   }
   type LogedInTeacher {
@@ -18,7 +20,12 @@ const typeTeacher = gql`
     teacher(id: ID!): Teacher
   }
   type Mutation {
-    addTeacher(name: String!, email: String!, password: String!): Teacher!
+    addTeacher(
+      first_name: String!
+      last_name: String!
+      email: String!
+      password: String!
+    ): Teacher!
     deleteTeacher(id: ID!): Teacher
     loginTeacher(email: String!, password: String!): LogedInTeacher!
   }

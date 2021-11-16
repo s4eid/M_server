@@ -3,7 +3,8 @@ const typeStudent = gql`
   directive @authStudent on FIELD_DEFINITION
   type Student {
     id: ID!
-    name: String!
+    first_name: String!
+    last_name: String!
     email: String!
     password: String!
     createdat: String!
@@ -19,7 +20,12 @@ const typeStudent = gql`
     student(id: ID!): Student
   }
   type Mutation {
-    addStudent(name: String!, email: String!, password: String!): Student!
+    addStudent(
+      first_name: String!
+      last_name: String!
+      email: String!
+      password: String!
+    ): Student!
     deleteStudent(id: ID!): Student
     loginStudent(email: String!, password: String!): LogedInStudent!
   }

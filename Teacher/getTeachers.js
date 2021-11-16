@@ -1,4 +1,4 @@
-const getTeacehrs_f = async (parent, args, { pool }) => {
+const getTeacehrs_f = async (pool) => {
   try {
     const data = await pool.query("SELECT * FROM teacher");
     return data.rows;

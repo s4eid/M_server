@@ -1,4 +1,4 @@
-const getStudents_f = async (parent, args, { pool, req }) => {
+const getStudents_f = async (pool) => {
   try {
     const data = await pool.query("SELECT * FROM student");
     return data.rows;

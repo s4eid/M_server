@@ -1,7 +1,7 @@
-const deleteTeacher_f = async (parent, { id }, { pool }) => {
+const deleteTeacher_f = async (id, pool) => {
   try {
     const data = await pool.query(
-      "DELETE FROM teacher WHERE id=$1 RETURNING *",
+      "DELETE FROM teacher WHERE teacher_id=$1 RETURNING *",
       [id]
     );
     return data.rows[0];

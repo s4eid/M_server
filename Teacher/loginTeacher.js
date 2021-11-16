@@ -2,11 +2,7 @@ const bcrypt = require("bcrypt");
 const { ApolloError } = require("apollo-server");
 const { jwtGenarate } = require("../middleware/jwt_login");
 
-const loginTeacher_f = async (
-  parent,
-  { email, password },
-  { pool, req, res }
-) => {
+const loginTeacher_f = async (email, password, pool, res) => {
   const exist = await pool.query("SELECT * FROM teacher WHERE email=$1", [
     email,
   ]);
@@ -24,7 +20,7 @@ const loginTeacher_f = async (
     user.id,
     user.role
   );
-  await pool.query("UPDATE teacher SET refresh_token=$1 WHERE id=$2", [
+  await pool.query("UPDATE teacher SET refresh_token=$1 WHERE teacher_id=$2", [
     refreshToken,
     user.id,
   ]);

@@ -14,7 +14,7 @@ function authStudentDirective(schema, directiveName) {
         const { resolve = defaultFieldResolver } = fieldConfig;
         fieldConfig.resolve = async function (source, args, context, info) {
           const result = await resolve(source, args, context, info);
-          if (context.user.role == "student") {
+          if (context.user?.role == "student") {
             return result;
           } else {
             throw new AuthenticationError("Auth is Required For This Field");

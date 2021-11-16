@@ -6,7 +6,7 @@ const typeTeacher = gql`
     last_name: String!
     email: String!
     password: String!
-    createdat: String!
+    teacher_createdat: String!
     picture: String
     role: String!
     refresh_token: String

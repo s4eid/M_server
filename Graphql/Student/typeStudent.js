@@ -7,7 +7,7 @@ const typeStudent = gql`
     last_name: String!
     email: String!
     password: String!
-    createdat: String!
+    student_createdat: String!
     picture: String
     refresh_token: String
   }

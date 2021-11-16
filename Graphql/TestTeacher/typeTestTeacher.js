@@ -27,7 +27,7 @@ const typeTest = gql`
     test_id: ID!
     title: String!
     quize: [Quiz!]!
-    createdat: String!
+    test_createdat: String!
     creator: String!
     teacher_id: ID!
     first_name: String!

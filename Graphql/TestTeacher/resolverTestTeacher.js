@@ -3,6 +3,7 @@ const { getTest_f } = require("../../TestTeacher/getTest");
 const { addTest_f } = require("../../TestTeacher/addTest");
 const { deleteTest_f } = require("../../TestTeacher/deleteTest");
 const { editTest_f } = require("../../TestTeacher/editTest");
+const { getTeacherTests_f } = require("../../TestTeacher/getTeacherTests");
 
 const resolverTest = {
   Query: {
@@ -14,7 +15,12 @@ const resolverTest = {
       const data = await getTest_f(id, pool);
       return data;
     },
+    async testTeacher(_, { teacher_id }, { pool }) {
+      const data = await getTeacherTests_f(teacher_id, pool);
+      return data;
+    },
   },
+
   Mutation: {
     async addTest(_, { title, creator, quize }, { pool }) {
       const data = await addTest_f(title, creator, quize, pool);

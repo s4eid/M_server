@@ -1,7 +1,7 @@
 const { gql } = require("apollo-server-express");
 const typeTeacher = gql`
   type Teacher {
-    id: ID!
+    teacher_id: ID!
     first_name: String!
     last_name: String!
     email: String!

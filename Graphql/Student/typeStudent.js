@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-express");
 const typeStudent = gql`
   directive @authStudent on FIELD_DEFINITION
   type Student {
-    id: ID!
+    student_id: ID!
     first_name: String!
     last_name: String!
     email: String!
@@ -16,7 +16,7 @@ const typeStudent = gql`
     refreshToken: String!
   }
   type Query {
-    students: [Student]! @authStudent
+    students: [Student]!
     student(id: ID!): Student
   }
   type Mutation {

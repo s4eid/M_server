@@ -11,10 +11,19 @@ const { resolverStudent } = require("../Graphql/Student/resolverStudent");
 const { typeStudent } = require("../Graphql/Student/typeStudent");
 const { resolverTest } = require("../Graphql/TestTeacher/resolverTestTeacher");
 const { typeTest } = require("../Graphql/TestTeacher/typeTestTeacher");
+const {
+  resolverTestStudent,
+} = require("../Graphql/TestStudent/resolverTestStudent");
+const { typeTestStudent } = require("../Graphql/TestStudent/typeTestStudent");
 
 let schema = makeExecutableSchema({
-  typeDefs: [typeTeacher, typeStudent, typeTest],
-  resolvers: [resolverTeacher, resolverStudent, resolverTest],
+  typeDefs: [typeTeacher, typeStudent, typeTest, typeTestStudent],
+  resolvers: [
+    resolverTeacher,
+    resolverStudent,
+    resolverTest,
+    resolverTestStudent,
+  ],
 });
 
 schema = authStudentDirective(schema, "authStudent");

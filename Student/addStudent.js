@@ -9,6 +9,7 @@ const addStudent_f = async (first_name, last_name, email, password, pool) => {
     );
     return data.rows[0];
   } catch (error) {
+    console.log(error);
     throw new ApolloError(error.detail);
   }
 };

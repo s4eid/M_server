@@ -11,7 +11,7 @@ const resolverTeacher = {
       return data;
     },
     async teacher(_, { id }, { pool }) {
-      const data = getTeacher_f(parent, id, pool);
+      const data = getTeacher_f(id, pool);
       return data;
     },
   },

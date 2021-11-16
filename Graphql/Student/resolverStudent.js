@@ -16,8 +16,14 @@ const resolverStudent = {
     },
   },
   Mutation: {
-    async addStudent(_, { name, email, password }, { pool }) {
-      const data = await addStudent_f(name, email, password, pool);
+    async addStudent(_, { first_name, last_name, email, password }, { pool }) {
+      const data = await addStudent_f(
+        first_name,
+        last_name,
+        email,
+        password,
+        pool
+      );
       return data;
     },
     async deleteStudent(_, { id }, { pool }) {

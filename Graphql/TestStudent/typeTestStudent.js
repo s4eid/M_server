@@ -1,18 +1,32 @@
 const { gql } = require("apollo-server-express");
 
-const typeTest = gql`
+const typeTestStudent = gql`
+  directive @authStudent on FIELD_DEFINITION
+  type Quiz {
+    q: String!
+    a: String!
+    b: String!
+    c: String!
+    d: String!
+    answerKey: String!
+  }
   type Test {
-    id: ID!
+    test_id: ID!
     title: String!
-    quize: String!
-    title: String!
-    createdat: String!
+    quize: [Quiz!]!
+    test_createdat: String!
     creator: String!
+    teacher_id: ID!
+    first_name: String!
+    last_name: String!
+    email: String!
+    picture: String
+    role: String!
   }
   type Query {
-    tests: [Test]!
-    test(id: ID!): Test
+    testsStudent: [Test]!
+    testStudent(id: ID!): Test
   }
 `;
 
-module.exports = { typeTest };
+module.exports = { typeTestStudent };

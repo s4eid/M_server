@@ -15,14 +15,25 @@ const {
   resolverTestStudent,
 } = require("../Graphql/TestStudent/resolverTestStudent");
 const { typeTestStudent } = require("../Graphql/TestStudent/typeTestStudent");
+const {
+  resolverTestResult,
+} = require("../Graphql/TestResult/resolverTestResult");
+const { typeTestResult } = require("../Graphql/TestResult/typeTestResult");
 
 let schema = makeExecutableSchema({
-  typeDefs: [typeTeacher, typeStudent, typeTest, typeTestStudent],
+  typeDefs: [
+    typeTeacher,
+    typeStudent,
+    typeTest,
+    typeTestStudent,
+    typeTestResult,
+  ],
   resolvers: [
     resolverTeacher,
     resolverStudent,
     resolverTest,
     resolverTestStudent,
+    resolverTestResult,
   ],
 });
 

@@ -19,6 +19,18 @@ const {
   resolverTestResult,
 } = require("../Graphql/TestResult/resolverTestResult");
 const { typeTestResult } = require("../Graphql/TestResult/typeTestResult");
+const {
+  resolverTeacherActivity,
+} = require("../Graphql/TeacherActivity/resolverTeacherActivity");
+const {
+  typeTeacherActivity,
+} = require("../Graphql/TeacherActivity/typeTeacherActivity");
+const {
+  resolverStudentActivity,
+} = require("../Graphql/StudentActivity/resolverStudentActivity");
+const {
+  typeStudentActivity,
+} = require("../Graphql/StudentActivity/typeStudentActivity");
 
 let schema = makeExecutableSchema({
   typeDefs: [
@@ -27,6 +39,8 @@ let schema = makeExecutableSchema({
     typeTest,
     typeTestStudent,
     typeTestResult,
+    typeTeacherActivity,
+    typeStudentActivity,
   ],
   resolvers: [
     resolverTeacher,
@@ -34,6 +48,8 @@ let schema = makeExecutableSchema({
     resolverTest,
     resolverTestStudent,
     resolverTestResult,
+    resolverTeacherActivity,
+    resolverStudentActivity,
   ],
 });
 

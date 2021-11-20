@@ -17,7 +17,12 @@ const typeTeacherActivity = gql`
     aralik: Int
   }
   type Query {
-    getTeacherActivity: ActivityType
+    getTeachersActivity: [ActivityType]!
+    getTeacherActivity(id: ID!): ActivityType
+  }
+  type Mutation {
+    addTeacherActivity(teacher: ID!): ActivityType
+    updateTeacherActivity(teacher: ID!, month: String!): ActivityType
   }
 `;
 

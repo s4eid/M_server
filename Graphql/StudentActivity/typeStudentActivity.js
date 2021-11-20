@@ -17,7 +17,12 @@ const typeStudentActivity = gql`
     aralik: Int
   }
   type Query {
-    getStudentActivity: ActivityType
+    getStudentsActivity: [ActivityType]!
+    getStudentActivity(id: ID!): ActivityType
+  }
+  type Mutation {
+    addStudentActivity(student: ID!): ActivityType
+    updateStudentActivity(month: String!, student: String!): ActivityType
   }
 `;
 module.exports = { typeStudentActivity };

@@ -27,7 +27,7 @@ const typeTeacher = gql`
       password: String!
     ): Teacher!
     deleteTeacher(id: ID!): Teacher
-    loginTeacher(email: String!, password: String!): LogedInTeacher!
+    loginTeacher(email: String!, password: String!): LogedInTeacher
   }
 `;
 

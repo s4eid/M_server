@@ -25,7 +25,7 @@ async function startApolloServer() {
   app.use(cookieParser());
   server.applyMiddleware({
     app,
-    cors: { origin: "https://studio.apollographql.com", credentials: true },
+    cors: { origin: "http://localhost:3000", credentials: true },
   });
   await new Promise((resolve) => app.listen({ port: port }, resolve));
   console.log(`graphql api is up in ${port}`);

@@ -8,6 +8,15 @@ const typeTestResult = gql`
     c: String!
     d: String!
     answerKey: String!
+    answer: String!
+  }
+  type TestType {
+    q: String!
+    a: String!
+    b: String!
+    c: String!
+    d: String!
+    answerKey: String!
   }
   input Quize {
     q: String!
@@ -16,9 +25,9 @@ const typeTestResult = gql`
     c: String!
     d: String!
     answerKey: String!
+    answer: String!
   }
   input addTestResultInput {
-    result: Int!
     quize_result: [Quize!]!
     student_id: ID!
     test_id: ID!
@@ -39,7 +48,7 @@ const typeTestResult = gql`
     test_id: ID!
     student_id: ID!
     title: String!
-    quize: [QuizeResultType!]!
+    quize: [TestType!]!
     test_createdat: String!
     creator: String!
     first_name: String!

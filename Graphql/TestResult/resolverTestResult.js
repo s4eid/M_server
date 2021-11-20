@@ -35,13 +35,11 @@ const resolverTestResult = {
   Mutation: {
     async addTestResult(_, { addTestResultInput }, { pool }) {
       const quize_result = addTestResultInput.quize_result;
-      const result = addTestResultInput.result;
       const student_id = addTestResultInput.student_id;
       const test_id = addTestResultInput.test_id;
       try {
         const data = await addTestResult_f(
           quize_result,
-          result,
           student_id,
           test_id,
           pool

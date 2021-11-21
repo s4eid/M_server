@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { ApolloError } = require("apollo-server");
+const { ApolloError, AuthenticationError } = require("apollo-server");
 const { jwtGenarate } = require("../middleware/jwt_login");
 
 const loginTeacher_f = async (email, password, pool, res) => {
@@ -8,11 +8,11 @@ const loginTeacher_f = async (email, password, pool, res) => {
   ]);
   const user = exist.rows[0];
   if (exist.rowCount == 0) {
-    throw new ApolloError("User Is Not Exist!");
+    throw new AuthenticationError("User Is Not Exist!");
   }
   const confrimPassword = await bcrypt.compare(password, user.password);
   if (confrimPassword == false) {
-    throw new ApolloError("Email Or Password Is Wrong!");
+    throw new AuthenticationError("Email Or Password Is Wrong!");
   }
   const { accessToken, refreshToken } = await jwtGenarate(
     user.email,

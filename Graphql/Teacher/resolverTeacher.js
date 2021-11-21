@@ -31,13 +31,8 @@ const resolverTeacher = {
       return data;
     },
     async loginTeacher(_, { email, password }, { pool, res }) {
-      try {
-        const data = await loginTeacher_f(email, password, pool, res);
-        return data;
-      } catch (error) {
-        console.log(`errorrrr${error}`);
-        return error;
-      }
+      const data = await loginTeacher_f(email, password, pool, res);
+      return data;
     },
   },
 };

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { setCookie } = require("./setCookie");
 const jwtCheck = async (token, pool, res) => {
   const accessToken = token.access_token;
   const refreshToken = token.refresh_token;
@@ -10,10 +11,10 @@ const jwtCheck = async (token, pool, res) => {
       const isValid = await jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
       const email = isValid.email;
       const id = isValid.id;
-      const name = isValid.name;
+      // const name = isValid.name;
       const role = isValid.role;
       const data = await pool.query(
-        `SELECT refresh_token FROM ${role} WHERE id=$1`,
+        `SELECT refresh_token FROM ${role} WHERE ${role}_id=$1`,
         [id]
       );
       const refreshTokenDb = data.rows[0].refresh_token;
@@ -21,22 +22,21 @@ const jwtCheck = async (token, pool, res) => {
         const newAccessToken = await jwt.sign(
           {
             email,
-            name,
+            // name,
             id,
             role,
           },
-          process.env.ACCESS_TOKEN
+          process.env.ACCESS_TOKEN,
+          { expiresIn: "1h" }
         );
-        res.cookie("access_token", newAccessToken, {
-          maxAge: 1000 * 60 * 60,
-          secure: true,
-          sameSite: "none",
-        });
+        console.log(`chera cookie ro nemifreste???${newAccessToken}`);
+        await setCookie(newAccessToken, res);
         return isValid;
       } else {
         return null;
       }
     } catch (error) {
+      console.log(error);
       return null;
     }
   }

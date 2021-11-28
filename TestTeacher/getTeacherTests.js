@@ -1,6 +1,12 @@
-const getTeacherTests_f = async () => {
+const getTeacherTests_f = async (teacher_id, pool) => {
   try {
-  } catch (error) {}
+    const data = await pool.query("SELECT * FROM test WHERE creator=$1", [
+      teacher_id,
+    ]);
+    return data.rows;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = { getTeacherTests_f };

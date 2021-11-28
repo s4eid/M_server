@@ -23,6 +23,12 @@ const typeTest = gql`
     title: String!
     quize: [testAdd!]!
   }
+  type TestResults {
+    test_result_id: ID!
+    first_name: String!
+    last_name: String!
+    result: Int!
+  }
   type Test {
     test_id: ID!
     title: String!
@@ -38,15 +44,26 @@ const typeTest = gql`
     role: String!
     refresh_token: String
   }
+  type DeletedTest {
+    test_id: ID!
+  }
+  type TeacherTests {
+    test_id: ID!
+    title: String!
+    quize: [Quiz!]!
+    test_createdat: String!
+    creator: String!
+  }
   type Query {
-    tests: [Test]!
+    tests: [Test]! @authTeacher
     test(id: ID!): Test
-    getTeacherTests(teacher_id: ID!): Test
+    getTeacherTests(teacher_id: ID!): [TeacherTests]!
     testTeacher(teacher_id: ID!): Test
+    getTestsResultsTeacher(id: ID!): [TestResults]
   }
   type Mutation {
     addTest(title: String!, creator: String!, quize: [testAdd]!): Test
-    deleteTest(id: ID!): Test
+    deleteTest(id: ID!): DeletedTest
     editTest(editTestInput: editTestInput!): Test
   }
 `;

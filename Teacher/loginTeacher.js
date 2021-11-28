@@ -17,22 +17,20 @@ const loginTeacher_f = async (email, password, pool, res) => {
   const { accessToken, refreshToken } = await jwtGenarate(
     user.email,
     user.name,
-    user.id,
+    user.teacher_id,
     user.role
   );
   await pool.query("UPDATE teacher SET refresh_token=$1 WHERE teacher_id=$2", [
     refreshToken,
-    user.id,
+    user.teacher_id,
   ]);
   res.cookie("access_token", accessToken, {
     maxAge: 1000 * 60 * 60,
-    secure: true,
-    sameSite: "none",
+    secure: process.env.NODE_ENV ? true : false,
   });
   res.cookie("refresh_token", refreshToken, {
     maxAge: 1000 * 60 * 60 * 24,
-    secure: true,
-    sameSite: "none",
+    secure: process.env.NODE_ENV ? true : false,
   });
   return { accessToken, refreshToken };
 };

@@ -3,6 +3,9 @@ const setCookie = async (token, res) => {
     res.cookie("access_token", token, {
       maxAge: 1000 * 60 * 60,
       domain: "https://math-p.vercel.app",
+      secure: true,
+      sameSite: "none",
+
       // secure: process.env.NODE_ENV ? true : false,
     });
   } catch (error) {

@@ -8,33 +8,39 @@ const jwtCheck = async (token, pool, res) => {
     return user;
   } else {
     try {
-      const isValid = await jwt.verify(refreshToken, process.env.REFRESH_TOKEN);
-      const email = isValid.email;
-      const id = isValid.id;
-      // const name = isValid.name;
-      const role = isValid.role;
-      const data = await pool.query(
-        `SELECT refresh_token FROM ${role} WHERE ${role}_id=$1`,
-        [id]
-      );
-      const refreshTokenDb = data.rows[0].refresh_token;
-      if (refreshToken == refreshTokenDb) {
-        const newAccessToken = await jwt.sign(
-          {
-            email,
-            // name,
-            id,
-            role,
-          },
-          process.env.ACCESS_TOKEN,
-          { expiresIn: "1h" }
+      if (refreshToken) {
+        const isValid = await jwt.verify(
+          refreshToken,
+          process.env.REFRESH_TOKEN
         );
-        console.log(`chera cookie ro nemifreste???${newAccessToken}`);
-        await setCookie(newAccessToken, res);
-        return isValid;
-      } else {
-        return null;
+        const email = isValid.email;
+        const id = isValid.id;
+        // const name = isValid.name;
+        const role = isValid.role;
+        const data = await pool.query(
+          `SELECT refresh_token FROM ${role} WHERE ${role}_id=$1`,
+          [id]
+        );
+        const refreshTokenDb = data.rows[0].refresh_token;
+        if (refreshToken == refreshTokenDb) {
+          const newAccessToken = await jwt.sign(
+            {
+              email,
+              // name,
+              id,
+              role,
+            },
+            process.env.ACCESS_TOKEN,
+            { expiresIn: "1h" }
+          );
+          console.log(`chera cookie ro nemifreste???${newAccessToken}`);
+          await setCookie(newAccessToken, res);
+          return isValid;
+        } else {
+          return null;
+        }
       }
+      return null;
     } catch (error) {
       console.log(error);
       return null;

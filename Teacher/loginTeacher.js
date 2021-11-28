@@ -32,6 +32,7 @@ const loginTeacher_f = async (email, password, pool, res) => {
     maxAge: 1000 * 60 * 60 * 24,
     // secure: process.env.NODE_ENV ? true : false,
   });
+  console.log("its working", accessToken);
   return { accessToken, refreshToken };
 };
 

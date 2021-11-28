@@ -26,10 +26,12 @@ const loginTeacher_f = async (email, password, pool, res) => {
   ]);
   res.cookie("access_token", accessToken, {
     maxAge: 1000 * 60 * 60,
+    domain: "https://math-p.vercel.app",
     // secure: process.env.NODE_ENV ? true : false,
   });
   res.cookie("refresh_token", refreshToken, {
     maxAge: 1000 * 60 * 60 * 24,
+    domain: "https://math-p.vercel.app",
     // secure: process.env.NODE_ENV ? true : false,
   });
   console.log("its working", accessToken);

@@ -26,11 +26,11 @@ const loginTeacher_f = async (email, password, pool, res) => {
   ]);
   res.cookie("access_token", accessToken, {
     maxAge: 1000 * 60 * 60,
-    secure: process.env.NODE_ENV ? true : false,
+    // secure: process.env.NODE_ENV ? true : false,
   });
   res.cookie("refresh_token", refreshToken, {
     maxAge: 1000 * 60 * 60 * 24,
-    secure: process.env.NODE_ENV ? true : false,
+    // secure: process.env.NODE_ENV ? true : false,
   });
   return { accessToken, refreshToken };
 };

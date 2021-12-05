@@ -26,7 +26,7 @@ const loginTeacher_f = async (email, password, pool, res) => {
   ]);
   res.cookie("access_token", accessToken, {
     maxAge: 1000 * 60 * 60,
-    // secure: true,
+    secure: true,
     sameSite: "none",
     // domain:
     //   process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
@@ -45,7 +45,7 @@ const loginTeacher_f = async (email, password, pool, res) => {
     // domain: "math-p.vercel.app",
     // secure: process.env.NODE_ENV === "production",
 
-    // secure: true,
+    secure: true,
     sameSite: "none",
 
     // secure: process.env.NODE_ENV ? true : false,

@@ -2,7 +2,8 @@ const setCookie = async (token, res) => {
   try {
     res.cookie("access_token", token, {
       maxAge: 1000 * 60 * 60,
-      domain: "https://math-p.vercel.app",
+      // domain: "https://math-p.vercel.app",
+      domain: process.env.NODE_ENV ? "math-p.vercel.app" : "localhost:4000",
       secure: true,
       sameSite: "none",
 

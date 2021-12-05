@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server-express");
 const typeTeacher = gql`
+  # directive @authTeacher on FIELD_DEFINITION
   type Teacher {
     teacher_id: ID!
     first_name: String!

@@ -57,9 +57,9 @@ const typeTest = gql`
   type Query {
     tests: [Test]! @authTeacher
     test(id: ID!): Test
-    getTeacherTests(teacher_id: ID!): [TeacherTests]!
-    testTeacher(teacher_id: ID!): Test
-    getTestsResultsTeacher(id: ID!): [TestResults]
+    getTeacherTests(teacher_id: ID!): [TeacherTests]! @authTeacher
+    testTeacher(teacher_id: ID!): Test @authTeacher
+    getTestsResultsTeacher(id: ID!): [TestResults] @authTeacher
   }
   type Mutation {
     addTest(title: String!, creator: String!, quize: [testAdd]!): Test

@@ -14,6 +14,7 @@ async function startApolloServer() {
     context: async ({ req, res }) => {
       let user = null;
       const token = req.cookies || "";
+      console.log(token);
       if (token) {
         user = await jwtCheck(token, pool, res);
       }

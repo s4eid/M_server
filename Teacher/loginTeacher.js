@@ -28,8 +28,8 @@ const loginTeacher_f = async (email, password, pool, res) => {
     maxAge: 1000 * 60 * 60,
     secure: true,
     sameSite: "none",
-    domain:
-      process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
+    domain: "math-p.vercel.app",
+    // process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
     // path: "/",
     // secure: process.env.NODE_ENV === "production",
     // httpOnly: true,
@@ -38,8 +38,8 @@ const loginTeacher_f = async (email, password, pool, res) => {
   });
   res.cookie("refresh_token", refreshToken, {
     maxAge: 1000 * 60 * 60 * 24,
-    domain:
-      process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
+    domain: "math-p.vercel.app",
+    // process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
     // path: "/",
     // httpOnly: true,
     // domain: "math-p.vercel.app",

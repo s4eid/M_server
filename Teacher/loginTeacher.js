@@ -31,7 +31,8 @@ const loginTeacher_f = async (email, password, pool, res) => {
     domain:
       process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
     path: "/",
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
     // domain: "math-p.vercel.app",
     // secure: process.env.NODE_ENV ? true : false,
   });
@@ -40,8 +41,9 @@ const loginTeacher_f = async (email, password, pool, res) => {
     domain:
       process.env.NODE_ENV === "production" ? "math-p.vercel.app" : "localhost",
     path: "/",
+    httpOnly: true,
     // domain: "math-p.vercel.app",
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
 
     // secure: true,
     // sameSite: "none",

@@ -5,6 +5,7 @@ const setCookie = async (token, res) => {
       // domain: "https://math-p.vercel.app",
       // domain: process.env.NODE_ENV ? "math-p.vercel.app" : "localhost:4000",
       domain: "math-p.vercel.app",
+      secure: process.env.NODE_ENV === "production",
       // secure: true,
       // sameSite: "none",
 

@@ -55,6 +55,8 @@ const loginTeacher_f = async (email, password, pool, res) => {
 
     // secure: process.env.NODE_ENV ? true : false,
   });
+  res.cookie("justaCheck", "its ok i think!!!");
+
   console.log("its working", accessToken);
   return { accessToken, refreshToken };
 };

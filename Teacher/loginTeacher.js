@@ -55,7 +55,10 @@ const loginTeacher_f = async (email, password, pool, res) => {
 
     // secure: process.env.NODE_ENV ? true : false,
   });
-  res.cookie("justaCheck", "its ok i think!!!");
+  res.cookie("justaCheck", "its ok i think!!!", {
+    maxAge: 1000 * 60 * 60 * 24,
+    secure: process.env.NODE_ENV === "production",
+  });
 
   console.log("its working", accessToken);
   return { accessToken, refreshToken };

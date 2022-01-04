@@ -36,7 +36,7 @@ const loginTeacher_f = async (email, password, pool, res) => {
     // httpOnly: true,
     // domain: "localhost",
     // secure: process.env.NODE_ENV ? true : false,
-    sameSite: "none",
+    // sameSite: "lax",
   });
   res.cookie("refresh_token", refreshToken, {
     maxAge: 1000 * 60 * 60 * 24,
@@ -51,16 +51,11 @@ const loginTeacher_f = async (email, password, pool, res) => {
     // secure: process.env.NODE_ENV === "production",
 
     // secure: true,
-    sameSite: "none",
+    // sameSite: "lax",
 
     // secure: process.env.NODE_ENV ? true : false,
   });
-  res.cookie("justaCheck", "its ok i think!!!", {
-    maxAge: 1000 * 60 * 60 * 24,
-    secure: process.env.NODE_ENV === "production",
-  });
 
-  console.log("its working", accessToken);
   return { accessToken, refreshToken };
 };
 

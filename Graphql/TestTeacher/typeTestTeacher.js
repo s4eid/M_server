@@ -8,7 +8,8 @@ const typeTest = gql`
     b: String!
     c: String!
     d: String!
-    answerKey: String!
+    image: String!
+    # answerKey: String!
   }
   input testAdd {
     q: String!
@@ -16,7 +17,8 @@ const typeTest = gql`
     b: String!
     c: String!
     d: String!
-    answerKey: String!
+    image: String!
+    # answerKey: String!
   }
   input editTestInput {
     id: ID!
@@ -62,7 +64,7 @@ const typeTest = gql`
     getTestsResultsTeacher(id: ID!): [TestResults] @authTeacher
   }
   type Mutation {
-    addTest(title: String!, creator: String!, quize: [testAdd]!): Test
+    addTest(title: String!, creator: ID!, quize: [testAdd]!): Test
     deleteTest(id: ID!): DeletedTest
     editTest(editTestInput: editTestInput!): Test
   }

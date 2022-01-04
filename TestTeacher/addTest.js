@@ -1,4 +1,5 @@
 const addTest_f = async (title, creator, quize, pool) => {
+  console.log("haappend", title, creator, quize);
   var quizeJson = await JSON.stringify(quize);
   try {
     const data = await pool.query(

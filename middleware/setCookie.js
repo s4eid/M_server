@@ -7,7 +7,7 @@ const setCookie = async (token, res) => {
       // domain: "math-p.vercel.app",
       secure: process.env.NODE_ENV === "production",
       // secure: true,
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
 
       // secure: process.env.NODE_ENV ? true : false,
     });

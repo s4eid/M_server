@@ -33,7 +33,6 @@ const jwtCheck = async (token, pool, res) => {
             process.env.ACCESS_TOKEN,
             { expiresIn: "1h" }
           );
-          console.log(`chera cookie ro nemifreste???${newAccessToken}`);
           await setCookie(newAccessToken, res);
           return isValid;
         } else {

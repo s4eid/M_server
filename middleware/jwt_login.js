@@ -4,7 +4,7 @@ const jwtGenarate = async (email, name, id, role) => {
   const accessToken = await sign(
     { email, name, id, role },
     process.env.ACCESS_TOKEN,
-    { expiresIn: "1h" }
+    { expiresIn: "1m" }
   );
   const refreshToken = await sign(
     { email, name, id, role },

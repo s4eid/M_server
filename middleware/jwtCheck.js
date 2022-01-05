@@ -25,8 +25,8 @@ const jwtCheck = async (token, pool, res) => {
         if (refreshToken == refreshTokenDb) {
           const newAccessToken = await jwt.sign(
             {
-              email,
               // name,
+              email,
               id,
               role,
             },

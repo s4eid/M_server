@@ -4,8 +4,43 @@ const jwtCheck = async (token, pool, res) => {
   const accessToken = token.access_token;
   const refreshToken = token.refresh_token;
   if (accessToken) {
-    const user = await jwt.verify(accessToken, process.env.ACCESS_TOKEN);
-    return user;
+    try {
+      const user = await jwt.verify(accessToken, process.env.ACCESS_TOKEN);
+      return user;
+    } catch (error) {
+      if (refreshToken) {
+        const isValid = await jwt.verify(
+          refreshToken,
+          process.env.REFRESH_TOKEN
+        );
+        const email = isValid.email;
+        const id = isValid.id;
+        // const name = isValid.name;
+        const role = isValid.role;
+        const data = await pool.query(
+          `SELECT refresh_token FROM ${role} WHERE ${role}_id=$1`,
+          [id]
+        );
+        const refreshTokenDb = data.rows[0].refresh_token;
+        if (refreshToken == refreshTokenDb) {
+          const newAccessToken = await jwt.sign(
+            {
+              // name,
+              email,
+              id,
+              role,
+            },
+            process.env.ACCESS_TOKEN,
+            { expiresIn: "1m" }
+          );
+          await setCookie(newAccessToken, res);
+          return isValid;
+        } else {
+          return null;
+        }
+      }
+      return null;
+    }
   } else {
     try {
       if (refreshToken) {
@@ -31,7 +66,7 @@ const jwtCheck = async (token, pool, res) => {
               role,
             },
             process.env.ACCESS_TOKEN,
-            { expiresIn: "1h" }
+            { expiresIn: "1m" }
           );
           await setCookie(newAccessToken, res);
           return isValid;

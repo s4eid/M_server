@@ -8,8 +8,8 @@ const typeTest = gql`
     b: String!
     c: String!
     d: String!
-    image: String!
-    # answerKey: String!
+    image: String
+    answerKey: String!
   }
   input testAdd {
     q: String!
@@ -17,8 +17,8 @@ const typeTest = gql`
     b: String!
     c: String!
     d: String!
-    image: String!
-    # answerKey: String!
+    image: String
+    answerKey: String!
   }
   input editTestInput {
     id: ID!

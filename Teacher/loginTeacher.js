@@ -4,6 +4,7 @@ const { jwtGenarate } = require("../middleware/jwt_login");
 const jwt = require("jsonwebtoken");
 
 const loginTeacher_f = async (email, password, pool, res) => {
+  console.log(`email is herer ${email}`);
   const exist = await pool.query("SELECT * FROM teacher WHERE email=$1", [
     email,
   ]);

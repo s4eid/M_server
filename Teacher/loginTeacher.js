@@ -17,8 +17,12 @@ const loginTeacher_f = async (email, password, pool, res) => {
     throw new AuthenticationError("Email Or Password Is Wrong!");
   }
   try {
-    await jwt.verify(user.refresh_token, process.env.REFRESH_TOKEN);
-    const access = await sign(
+    const refresh = await jwt.verify(
+      user.refresh_token,
+      process.env.REFRESH_TOKEN
+    );
+    console.log(refresh);
+    const access = await jwt.sign(
       {
         email: user.email,
         name: user.name,

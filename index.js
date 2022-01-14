@@ -17,11 +17,6 @@ async function startApolloServer() {
       if (token) {
         user = await jwtCheck(token, pool, res);
       }
-      // res.cookie("access_toke", "hwlo", {
-      //   maxAge: 1000 * 60 * 60,
-      //   secure: process.env.NODE_ENV ? true : false,
-      //   httpOnly: true,
-      // });
       return { pool, req, res, user };
     },
   });

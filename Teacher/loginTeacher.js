@@ -39,7 +39,7 @@ const loginTeacher_f = async (email, password, pool, res) => {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "",
       });
-      return { accessToken, refreshToken };
+      return { accessToken: access, refreshToken: user.refresh_token };
     } catch (error) {
       const { accessToken, refreshToken } = await jwtGenarate(
         user.email,
